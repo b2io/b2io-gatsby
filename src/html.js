@@ -1,18 +1,41 @@
 import React from 'react';
+import { ServerStyleSheet } from 'styled-components';
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+let stylesStr;
+if (isProduction) {
+  try {
+    stylesStr = require('!raw-loader!../public/styles.css');
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 class Html extends React.Component {
   render() {
     const {
       body,
+      bodyAttributes,
       headComponents,
+      htmlAttributes,
       postBodyComponents,
       preBodyComponents,
     } = this.props;
 
+    let css;
+    if (isProduction) {
+      css = (
+        <style
+          dangerouslySetInnerHTML={{ __html: stylesStr }}
+          id="gatsby-inlined-css"
+        />
+      );
+    }
+
     return (
-      <html lang="en">
+      <html lang="en" {...htmlAttributes}>
         <head>
-          {headComponents}
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
@@ -37,9 +60,15 @@ class Html extends React.Component {
             type="image/png"
           />
           <link color="#5bbad5" href="/safari-pinned-tab.svg" rel="mask-icon" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+            rel="stylesheet"
+          />
           <title>Base Two</title>
+          {headComponents}
+          {css}
         </head>
-        <body>
+        <body {...bodyAttributes}>
           {preBodyComponents}
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
           {postBodyComponents}

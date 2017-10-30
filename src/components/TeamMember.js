@@ -1,13 +1,26 @@
+import GatsbyImage from 'gatsby-image';
 import React from 'react';
 import styled from 'styled-components';
-import Hole from './Hole';
+import { H4 } from './typography';
+import { mediaQuery, themed } from '../util/style';
 
-const Img = styled.img`
-  border-radius: 50%;
+const Wrapper = styled.li`
+  display: inline-block;
+  margin: 1em;
+  vertical-align: top;
+`;
+
+const Img = styled(GatsbyImage)`
   height: auto;
-  padding: 0 20px;
   vertical-align: middle;
-  width: 100%;
+  width: 260px;
+`;
+
+const Name = H4.extend`${themed('typography.headline')};`;
+
+const Title = styled.small`
+  display: block;
+  font-weight: normal;
 `;
 
 class TeamMember extends React.Component {
@@ -15,33 +28,18 @@ class TeamMember extends React.Component {
     const { image, name, title } = this.props;
 
     return (
-      <Hole>
+      <Wrapper>
         <Img
           alt={name}
-          sizes="(min-width: 960px) 260px, 33vw"
-          src={image.childImageSharp.small.src}
-          srcSet={image.childImageSharp.small.srcSet}
+          resolutions={image.resolutions}
         />
-        <h3>{name}</h3>
-        <p>{title}</p>
-      </Hole>
+        <Name>
+          {name}
+          <Title>{title}</Title>
+        </Name>
+      </Wrapper>
     );
   }
 }
 
 export default TeamMember;
-
-export const teamMemberFragment = graphql`
-  fragment Team_TeamMember on TeamJson {
-    image {
-      childImageSharp {
-        small: responsiveSizes(maxWidth: 260, maxHeight: 260) {
-          src
-          srcSet
-        }
-      }
-    }
-    name
-    title
-  }
-`;
