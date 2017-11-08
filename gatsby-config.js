@@ -15,6 +15,14 @@ module.exports = {
         path: path.join(__dirname, 'data'),
       },
     },
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: 'mti8axhbbe1r',
+        accessToken:
+          '2c32ed289c2559d029a987cade16d90bb53ee97990d05a6291eec82842bf055f',
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',

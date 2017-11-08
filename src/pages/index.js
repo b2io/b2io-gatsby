@@ -1,6 +1,5 @@
 import GatsbyImage from 'gatsby-image';
 import React from 'react';
-import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { modularScale, stripUnit } from 'polished';
 import {
@@ -25,7 +24,6 @@ import {
 } from '../components';
 import { toNodesWithImage } from '../util/graphql';
 import { mediaQuery } from '../util/style';
-import adminRedirect from '../adminRedirect';
 
 const LogoImg = styled(GatsbyImage)`opacity: 0.66;`;
 
@@ -41,10 +39,6 @@ const ContactFormLayout = styled.div`
 `;
 
 class IndexPage extends React.Component {
-  componentDidMount() {
-    adminRedirect();
-  }
-
   render() {
     const { data } = this.props;
     const clients = toNodesWithImage(data.clients);
@@ -53,9 +47,6 @@ class IndexPage extends React.Component {
 
     return (
       <Main>
-        <Helmet>
-          <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
-        </Helmet>
         <Header>
           <H1>Base Two</H1>
           <Lead>We turn ideas into beautiful, functional software.</Lead>
