@@ -24,6 +24,7 @@ import {
 } from '../components';
 import { toNodesWithImage } from '../util/graphql';
 import { mediaQuery } from '../util/style';
+import netlifyIdentityRedirect from '../netlifyIdentityRedirect';
 
 const LogoImg = styled(GatsbyImage)`opacity: 0.66;`;
 
@@ -39,6 +40,10 @@ const ContactFormLayout = styled.div`
 `;
 
 class IndexPage extends React.Component {
+  componentDidMount() {
+    netlifyIdentityRedirect();
+  }
+
   render() {
     const { data } = this.props;
     const clients = toNodesWithImage(data.clients);
