@@ -1,6 +1,6 @@
 # b2io-gatsby
 
-> Spike of base2.io using Gatsby 
+> Spike of base2.io using Gatsby and Netlify CMS
 
 ## Setup
 
@@ -14,7 +14,7 @@ $ npm run build
 Local development server on port 8000:
 
 ```
-$ npm run dev
+$ npm run develop
 ```
 
 ## Production
@@ -23,12 +23,6 @@ Local production server on port 9000:
 
 ```
 $ npm start
-```
-
-Deploy staging version using `now`:
-
-```
-$ npm run deploy
 ```
 
 ## Known Issues
