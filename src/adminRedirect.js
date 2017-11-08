@@ -1,4 +1,4 @@
-function netlifyIdentityRedirect() {
+function adminRedirect() {
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on('init', user => {
       if (!user) {
@@ -10,4 +10,4 @@ function netlifyIdentityRedirect() {
   }
 }
 
-export default netlifyIdentityRedirect;
+export default adminRedirect;

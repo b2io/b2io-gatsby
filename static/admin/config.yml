@@ -2,18 +2,27 @@ backend:
   name: git-gateway
   branch: master
 publish_mode: editorial_workflow
-media_folder: "/static"
+media_folder: "/static/img"
 collections:
-  - name: "authors"
-    label: "Authors"
-    folder: "cms/authors"
-    create: true
-    fields:
-      - {label: "Name", name: "name"}
-      - {label: "GitHub username", name: "github"}
-  - name: "blog"
-    label: "Blog"
-    folder: "cms/posts"
+  - name: "settings"
+    label: "Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "authors"
+        label: "Authors"
+        file: "_content/authors.yml"
+        description: "Author descriptions"
+        fields:
+          - name: "authors"
+            label: "Authors"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+  - name: "posts"
+    label: "Posts"
+    folder: "_content/posts"
     create: true
     slug: "{{year}}/{{month}}/{{day}}/{{slug}}"
     fields:
@@ -25,5 +34,5 @@ collections:
         name: "author"
         widget: "relation"
         collection: "authors"
-        searchFields: ["name", "github"]
+        searchFields: ["name"]
         valueField: "name"

@@ -25,7 +25,7 @@ import {
 } from '../components';
 import { toNodesWithImage } from '../util/graphql';
 import { mediaQuery } from '../util/style';
-import netlifyIdentityRedirect from '../netlifyIdentityRedirect';
+import adminRedirect from '../adminRedirect';
 
 const LogoImg = styled(GatsbyImage)`opacity: 0.66;`;
 
@@ -42,7 +42,7 @@ const ContactFormLayout = styled.div`
 
 class IndexPage extends React.Component {
   componentDidMount() {
-    netlifyIdentityRedirect();
+    adminRedirect();
   }
 
   render() {
@@ -54,10 +54,7 @@ class IndexPage extends React.Component {
     return (
       <Main>
         <Helmet>
-          <script
-            async
-            src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-          />
+          <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
         </Helmet>
         <Header>
           <H1>Base Two</H1>

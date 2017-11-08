@@ -43,23 +43,27 @@ class Html extends React.Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link
-            href="/apple-touch-icon.png"
+            href="/img/apple-touch-icon.png"
             rel="apple-touch-icon"
             sizes="180x180"
           />
           <link
-            href="/favicon-32x32.png"
+            href="/img/favicon-32x32.png"
             rel="icon"
             sizes="32x32"
             type="image/png"
           />
           <link
-            href="/favicon-16x16.png"
+            href="/img/favicon-16x16.png"
             rel="icon"
             sizes="16x16"
             type="image/png"
           />
-          <link color="#5bbad5" href="/safari-pinned-tab.svg" rel="mask-icon" />
+          <link
+            color="#5bbad5"
+            href="/img/safari-pinned-tab.svg"
+            rel="mask-icon"
+          />
           <link
             href="https://fonts.googleapis.com/css?family=Roboto:400,500"
             rel="stylesheet"
