@@ -5,6 +5,7 @@ module.exports = {
     title: 'Base Two',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-next',
     'gatsby-plugin-styled-components',
     {
