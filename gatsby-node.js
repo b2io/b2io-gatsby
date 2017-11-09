@@ -1,17 +1,15 @@
 const format = require('date-fns/format');
+const grayMatter = require('gray-matter');
 const path = require('path');
-const slash = require('slash');
 
-const postTemplate = slash(path.resolve('./src/templates/post.js'));
+const postTemplate = path.resolve('./src/templates/post.js');
 
-function slugify({ date, title }) {
-  const datePart = format(date, 'YYYY[/]MM[/]DD');
-  const titlePart = title
-    .replace(/[^\w\s]/g, '')
-    .replace(/\s+/g, '-')
-    .toLowerCase();
+function readPost(absolutePath) {
+  const { content, data } = grayMatter.read(absolutePath);
+  const id = path.parse(absolutePath).name;
+  const postPath  = id.replace(/(\d{4})-(\d{2})-(\d{2})-(.+)/g, '$1/$2/$3/$4');
 
-  return `${datePart}/${titlePart}`;
+  return { id, body: content, frontmatter: data, path: postPath };
 }
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
@@ -19,13 +17,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   return new Promise((resolve, reject) => {
     graphql(`
-      query CreatePagesQuery {
-        posts: allContentfulPost {
+      query CreatePostsQuery {
+        posts: allFile(
+          filter: {
+            extension: { eq: "md" }
+            relativeDirectory: { eq: "posts" }
+          }
+        ) {
           edges {
             node {
-              id
-              title
-              date
+              absolutePath
             }
           }
         }
@@ -33,13 +34,20 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     `).then(result => {
       if (result.errors) reject(result.errors);
 
-      result.data.posts.edges.map(e => e.node).forEach(post => {
-        createPage({
-          component: postTemplate,
-          context: { id: post.id },
-          path: slugify(post),
+      console.log('Result', result);
+
+      result.data.posts.edges
+        .map(e => e.node.absolutePath)
+        .map(readPost)
+        .forEach(post => {
+          console.log('Post', post.path);
+
+          createPage({
+            component: postTemplate,
+            context: Object.assign({}, post),
+            path: post.path,
+          });
         });
-      });
 
       resolve();
     });
