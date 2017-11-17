@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import React from 'react';
 import markings from './react-markings';
-import { H1, H2, H3, H4, P } from './typography';
+import { H1, H2, H3, H4, P } from '../components';
 
 const headingsByLevel = { 1: H1, 2: H2, 3: H3, 4: H4 };
 
