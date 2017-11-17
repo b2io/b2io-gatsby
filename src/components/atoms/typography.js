@@ -1,7 +1,7 @@
 import { modularScale } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
-import { themed } from '../util/style';
+import { cssSome, themed } from '../../util/style';
 
 const H1 = styled.h1`
   ${themed('typography.display4')};
@@ -43,16 +43,6 @@ const H4 = styled.h4`
   }
 `;
 
-const Lead = styled.p`
-  ${themed('typography.headline')};
-  color: ${themed('color.primary')};
-  margin: 1em 0;
-
-  &:first-child {
-    margin-top: 0;
-  }
-`;
-
 const P = styled.p`
   ${themed('typography.body1')};
   color: ${themed('color.primary')};
@@ -61,6 +51,10 @@ const P = styled.p`
   &:first-child {
     margin-top: 0;
   }
+
+  ${cssSome('lead')`
+    ${themed('typography.headline')};
+  `};
 `;
 
-export { H1, H2, H3, H4, Lead, P };
+export { H1, H2, H3, H4, P };

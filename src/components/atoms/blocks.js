@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { themed } from '../util/style';
+import { themed } from '../../util/style';
 
 const Main = styled.main``;
 

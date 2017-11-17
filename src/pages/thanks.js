@@ -1,35 +1,29 @@
 import React from 'react';
-import { Section } from '../components/blocks';
-import TeamMember from '../components/TeamMember';
-import TeamMemberList from '../components/TeamMemberList';
-import { H2, Lead } from '../components/typography';
+import { H2, P, Section, TeamList } from '../components';
 import { toNodesWithImage } from '../util/graphql';
 
 class ThanksPage extends React.Component {
   render() {
     const { data } = this.props;
-    const teamMembers = toNodesWithImage(data.team);
+    const team = toNodesWithImage(data.team);
 
     return (
       <main>
         <Section>
           <H2>Thanks!</H2>
-          <Lead>
-            We're excited you're interested in working together.<br />
-            <br />
+          <P lead>We're excited you're interested in working together.</P>
+          <P lead>
             We'll review the information you sent and get back to you shortly.
-            <br />
-            <br />
+          </P>
+          <P lead>
             Thanks again,<br />
             Base Two
-          </Lead>
+          </P>
         </Section>
         <Section>
-          <TeamMemberList>
-            {teamMembers.map(member => (
-              <TeamMember {...member} key={member.id} />
-            ))}
-          </TeamMemberList>
+          <TeamList>
+            {team.map(member => <TeamList.Item {...member} key={member.id} />)}
+          </TeamList>
         </Section>
       </main>
     );

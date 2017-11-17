@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { cssSome } from '../util/style';
+import { cssSome } from '../../util/style';
 
 const InlineList = styled.ul`
   list-style: none;
@@ -12,9 +12,11 @@ const InlineList = styled.ul`
   `};
 `;
 
-InlineList.Item = styled.li`
+const InlineListItem = styled.li`
   display: inline-block;
   padding: 1em 2em;
 `;
 
-export default InlineList;
+InlineList.Item = InlineListItem;
+
+export { InlineList };

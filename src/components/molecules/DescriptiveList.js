@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Icon from './Icon';
-import { H3, P } from './typography';
-import { mediaQuery } from '../util/style';
+import { H3, Icon, P } from '../atoms';
+import { mediaQuery } from '../../util/style';
 
 const Header = styled.header`
   align-items: center;
@@ -18,10 +17,6 @@ const ItemH3 = H3.extend`
 class DescriptiveListItem extends React.Component {
   render() {
     const { children, iconName, title } = this.props;
-    const content = React.Children.map(
-      children,
-      child => (child.type === undefined ? <P>{child}</P> : child),
-    );
 
     return (
       <li>
@@ -29,7 +24,7 @@ class DescriptiveListItem extends React.Component {
           <Icon name={iconName} style={{ fontSize: '3em' }} />
           <ItemH3>{title}</ItemH3>
         </Header>
-        {content}
+        {children}
       </li>
     );
   }

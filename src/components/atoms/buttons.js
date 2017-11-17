@@ -2,7 +2,7 @@ import flow from 'lodash/flow';
 import { readableColor } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
-import { cssSome, lighten, themed } from '../util/style';
+import { cssSome, lighten, themed } from '../../util/style';
 
 const A = styled.a`
   ${themed('motion.color')};

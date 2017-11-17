@@ -2,7 +2,7 @@ import noop from 'lodash/noop';
 import nanoid from 'nanoid';
 import React from 'react';
 import styled from 'styled-components';
-import { cssSome, themed } from '../util/style';
+import { cssSome, themed } from '../../util/style';
 
 const FormField = styled.div`
   display: block;
