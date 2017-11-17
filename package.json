@@ -23,6 +23,8 @@
     "nanoid": "^1.0.1",
     "polished": "^1.8.1",
     "react-icons": "^2.2.7",
+    "remark": "^8.0.0",
+    "remark-react": "^4.0.1",
     "strip-indent": "^2.0.0"
   },
   "scripts": {

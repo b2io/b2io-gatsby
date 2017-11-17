@@ -1,5 +1,22 @@
 import React from 'react';
-import md from '../util/md';
+import remark from 'remark';
+import remarkReact from 'remark-react';
+import { H1, P } from '../components';
+
+const HoistChildren = props =>
+  React.Children.map(props.children, child => child.props.children);
+
+const markdownToElement = md =>
+  remark()
+    .use(remarkReact, {
+      remarkReactComponents: {
+        // TODO: Research and replace the other HAST element types from `remark`.
+        p: P,
+      },
+    })
+    .processSync(md).contents;
+
+const markdown = raw => <HoistChildren>{markdownToElement(raw)}</HoistChildren>;
 
 class PostTemplate extends React.Component {
   render() {
@@ -7,8 +24,8 @@ class PostTemplate extends React.Component {
 
     return (
       <main>
-        <h1>{data.title}</h1>
-        {md([content])}
+        <H1>{data.title}</H1>
+        {markdown(content)}
       </main>
     );
   }
